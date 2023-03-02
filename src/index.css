@@ -4,9 +4,27 @@
   --g-color-black: #111;
   --g-color-white: #fff;
   --g-color-danger: #f00;
-  --g-color-primary: #7db2e7;
-  --g-color-primary-hover: #2b72b96b;
-  --g-color-turquesa: #646cffaa;
+  --g-color-primary: #3183ff;
+  --g-color-primary-hover: #2a6ccf;
+
+  --g-color-electric: #FBD100;
+  --g-color-fire: #FF9741;
+  --g-color-ground: #E87236;
+  --g-color-grass: #38BF4B;
+  --g-color-bug: #83C300;
+  --g-color-ice: #4CD1C0;
+  --g-color-dragon: #006FC9;
+  --g-color-water: #3692DC;
+  --g-color-flying: #89AAE3;
+  --g-color-ghost: #4C6AB2;
+  --g-color-poison: #B567CE;
+  --g-color-fairy: #FB89EB;
+  --g-color-normal: #919AA2;
+  --g-color-dark: #5B5466;
+  --g-color-rock: #C8B686;
+  --g-color-steel: #5A8EA2;
+  --g-color-fighting: #E0306A;
+  --g-color-psychic: #FF6675;
 
   --g-colorGray100: #cecece;
   --g-colorGray150: #787878;
