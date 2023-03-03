@@ -4,6 +4,7 @@ export interface useFormProps {
   value: string
   onChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void
   clearValue: () => void
+  setInitialValue: (value: number) => void
 }
 
 const useForm = () => {
