@@ -17,10 +17,15 @@ const useForm = () => {
     setValue("")
   }
 
+  const setInitialValue = (value: number) => {
+    setValue(`${value}`)
+  }
+
   return {
     value,
     onChange,
     clearValue,
+    setInitialValue,
   }
 }
 

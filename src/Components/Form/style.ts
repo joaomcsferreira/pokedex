@@ -1,5 +1,10 @@
 import styled from "styled-components"
 
+interface InputProps {
+  width?: number
+  size?: number
+}
+
 interface ButtonProps {
   color: string
   radius?: number
@@ -26,15 +31,18 @@ interface TitleProps {
   justify?: string
 }
 
-const InputContainer = styled.input`
+const InputContainer = styled.input<InputProps>`
   border: none;
   outline: none;
-  padding: 1.5rem 2rem;
-  width: 100%;
-  font-size: 1.2rem;
+  padding: ${({ width }) => (width ? `0 0.5ch` : `1.5rem 2rem`)};
+  width: ${({ width }) => (width ? `${width + 1}ch` : "100%")};
+  height: ${({ width }) => width && "4ch"};
+  margin: 0 auto;
+  font-size: ${({ size }) => (size ? `${size}rem` : "1.2rem")};
   background-color: var(--g-colorGray250);
   color: var(--g-colorGray100);
   border-radius: 3.125rem;
+  transition: width 0.5s linear;
 
   &:hover,
   :focus {
