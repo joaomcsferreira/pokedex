@@ -2,9 +2,9 @@ import React from "react"
 import List from "./List"
 
 const Pokemons = () => {
-  const [pages, setPages] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(0)
 
-  return <List pages={pages} setPages={setPages} />
+  return <List currentPage={currentPage} setCurrentPage={setCurrentPage} />
 }
 
 export default Pokemons

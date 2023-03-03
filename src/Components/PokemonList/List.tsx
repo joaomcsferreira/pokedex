@@ -12,11 +12,11 @@ import Input from "../Form/Input"
 import useForm from "../../Hooks/useForm"
 
 interface ListProps {
-  pages: number
-  setPages: React.Dispatch<React.SetStateAction<number>>
+  currentPage: number
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-const List = ({ pages, setPages }: ListProps) => {
+const List = ({ currentPage, setCurrentPage }: ListProps) => {
   const { pokemons, getPokemons } = useService()
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -32,7 +32,7 @@ const List = ({ pages, setPages }: ListProps) => {
 
       page.setInitialValue(newPage)
 
-      setPages(newPage)
+      setCurrentPage(newPage)
 
       if (inputRef.current) {
         inputRef.current.blur()
@@ -41,18 +41,18 @@ const List = ({ pages, setPages }: ListProps) => {
   }
 
   const handlePreviousPage = () => {
-    if (!(pages <= 0)) setPages((pages) => pages - 1)
+    if (!(currentPage <= 0)) setCurrentPage((currentPage) => currentPage - 1)
   }
 
   const handleNextPage = () => {
-    if (!(pages >= 60)) setPages((pages) => pages + 1)
+    if (!(currentPage >= 60)) setCurrentPage((currentPage) => currentPage + 1)
   }
 
   React.useEffect(() => {
-    getPokemons(21, pages * 21)
+    getPokemons(21, currentPage * 21)
 
-    page.setInitialValue(pages)
-  }, [pages])
+    page.setInitialValue(currentPage)
+  }, [currentPage])
 
   return (
     <>
@@ -64,7 +64,7 @@ const List = ({ pages, setPages }: ListProps) => {
       </ListContainer>
       <ListActions>
         <Icon
-          disabled={pages <= 0 ? true : false}
+          disabled={currentPage <= 0 ? true : false}
           src={previous}
           onClick={handlePreviousPage}
         />
@@ -78,7 +78,7 @@ const List = ({ pages, setPages }: ListProps) => {
           {...page}
         />
         <Icon
-          disabled={pages >= 60 ? true : false}
+          disabled={currentPage >= 60 ? true : false}
           src={next}
           onClick={handleNextPage}
         />
