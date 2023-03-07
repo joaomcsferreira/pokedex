@@ -26,13 +26,40 @@
   --g-color-fighting: #E0306A;
   --g-color-psychic: #FF6675;
 
+  --g-type-white: #F0F0F0;
+  --g-type-white-hover: #8f8f8f;
+  --g-type-gray: #A0A0A0;
+  --g-type-gray-hover: #535353;
+  --g-type-yellow: #F0D048;
+  --g-type-yellow-hover: #b67600;
+  --g-type-brown: #B07030;
+  --g-type-brown-hover: #643608;
+  --g-type-green: #40B868;
+  --g-type-green-hover: #0f702f;
+  --g-type-blue: #3088F0;
+  --g-type-blue-hover: #074186;
+  --g-type-purple: #A868C0;
+  --g-type-purple-hover: #5c1b74;
+  --g-type-pink: #F890C8;
+  --g-type-pink-hover: #a7306f;
+  --g-type-red: #F05868;
+  --g-type-red-hover: #a71c2a;
+  --g-type-black: #2c2c2c;
+  --g-type-black-hover: #111;
+  
+
   --g-colorGray100: #cecece;
   --g-colorGray150: #787878;
+  --g-colorGray175: rgb(100, 100, 100);
   --g-colorGray200: #5c5c5c;
   --g-colorGray250: #474747;
   --g-colorGray300: #303030;
 
   --g-colorTransparentBlack50: rgba(0, 0, 0, 0.5);
+  --g-colorTransparentWhite18: rgba(255, 255, 255, 0.18);
+  --g-colorTransparentWhite40: rgba(255, 255, 255, 0.4);
+  --g-colorTransparentBlue30: rgba(31, 38, 135, 0.3);
+  --g-colorTransparentGray50: rgba(180, 180, 180,0.5);
 
   --font-family: 'Poppins', sans-serif;
 }
@@ -41,6 +68,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 html,

@@ -18,9 +18,13 @@ const Pokemons = () => {
     if (event.key === "Enter") {
       let newPage = 0
 
-      if (Number(pageInput.value) * 21 > 1279) newPage = 60
-      else if (Number(pageInput.value) < 0) newPage = 0
-      else newPage = Math.trunc(Number(pageInput.value))
+      if (/^\d+(?:\.\d+)?$/.test(pageInput.value)) {
+        if (Number(pageInput.value) * 21 > 883) newPage = 42
+        else if (Number(pageInput.value) < 0) newPage = 0
+        else newPage = Math.trunc(Number(pageInput.value))
+      } else {
+        newPage = 0
+      }
 
       pageInput.setInitialValue(newPage)
 
@@ -37,7 +41,7 @@ const Pokemons = () => {
   }
 
   const handleNextPage = () => {
-    if (!(currentPage >= 60)) setCurrentPage((currentPage) => currentPage + 1)
+    if (!(currentPage >= 42)) setCurrentPage((currentPage) => currentPage + 1)
   }
 
   return (
@@ -60,7 +64,7 @@ const Pokemons = () => {
           {...pageInput}
         />
         <Icon
-          disabled={currentPage >= 60 ? true : false}
+          disabled={currentPage >= 42 ? true : false}
           src={next}
           onClick={handleNextPage}
         />

@@ -28,9 +28,10 @@ interface PokemonTypeProps {
       url: string
     }
   }>
+  size?: number
 }
 
-const PokemonType = ({ types }: PokemonTypeProps) => {
+const PokemonType = ({ types, size }: PokemonTypeProps) => {
   const typesList = {
     bug: { src: bug, color: "--g-color-bug" },
     dark: { src: dark, color: "--g-color-dark" },
@@ -56,9 +57,11 @@ const PokemonType = ({ types }: PokemonTypeProps) => {
       {types.map((type) => (
         <TypeContainer key={type.type.name}>
           <TypeIcon
+            size={size}
             src={typesList[`${type.type.name as keyof typeof typesList}`].src}
           />
           <TypeName
+            size={size}
             color={
               typesList[`${type.type.name as keyof typeof typesList}`].color
             }

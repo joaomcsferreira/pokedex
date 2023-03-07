@@ -79,7 +79,7 @@ const ButtonContainer = styled.button<ButtonProps>`
 const TextContainer = styled.p<TextProps>`
   font-size: ${({ size }) => (size ? `${size}rem` : "1rem")};
   font-weight: ${({ weight }) => (weight ? weight : "normal")};
-  color: ${({ color }) => (color ? `var(${color})` : "var(--g-color-black)")};
+  color: ${({ color }) => (color ? `var(${color})` : "var(--g-color-white)")};
   text-transform: ${({ capitalize }) => capitalize && "capitalize"};
   padding: ${({ padding }) => padding && padding};
   text-align: ${({ justify }) => justify && justify};
@@ -95,7 +95,7 @@ const TextContainer = styled.p<TextProps>`
 const TitleContainer = styled.h2<TitleProps>`
   font-size: ${({ size }) => (size ? `${size}rem` : "3rem")};
   font-weight: ${({ weight }) => (weight ? weight : "500")};
-  color: ${({ color }) => (color ? `var(${color})` : "var(--g-color-black)")};
+  color: ${({ color }) => (color ? `var(${color})` : "var(--g-color-white)")};
   text-transform: ${({ capitalize }) => capitalize && "capitalize"};
   text-align: ${({ justify }) => justify && justify};
 `

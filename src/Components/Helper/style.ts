@@ -1,12 +1,18 @@
 import styled from "styled-components"
 
+interface TypeIconProps {
+  size?: number
+}
+
 interface TypeNameProps {
   color: string
+  size?: number
 }
 
 const TypesListContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 `
 
 const TypeContainer = styled.div`
@@ -17,12 +23,12 @@ const TypeContainer = styled.div`
   gap: 0.2rem;
 `
 
-const TypeIcon = styled.img`
-  width: 30px;
+const TypeIcon = styled.img<TypeIconProps>`
+  width: ${({ size }) => (size ? `${size}px` : "30px")};
 `
 
 const TypeName = styled.p<TypeNameProps>`
-  font-size: 0.7rem;
+  font-size: ${({ size }) => (size ? `${size / 2.675}px` : "0.7rem")};
   text-transform: uppercase;
   font-weight: 700;
   background-color: var(--g-color-white);
@@ -31,4 +37,30 @@ const TypeName = styled.p<TypeNameProps>`
   border-radius: 1rem;
 `
 
-export { TypesListContainer, TypeContainer, TypeIcon, TypeName }
+const FillContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--g-colorTransparentBlack50);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const GraphContainer = styled.div`
+  width: 270px;
+  height: 270px;
+  margin: 0 auto;
+`
+
+export {
+  TypesListContainer,
+  TypeContainer,
+  TypeIcon,
+  TypeName,
+  FillContainer,
+  GraphContainer,
+}
