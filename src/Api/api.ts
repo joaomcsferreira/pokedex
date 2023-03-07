@@ -88,6 +88,7 @@ export interface EvolutionChainProps {
 
 const useService = () => {
   const [error, setError] = React.useState<string | null>(null)
+  const [loading, setLoading] = React.useState(false)
   const [pokemons, setPokemons] = React.useState<Array<PokemonsProps>>([])
   const [pokemonPreview, setPokemonPreview] =
     React.useState<PokemonPreviewProps | null>(null)
@@ -100,6 +101,9 @@ const useService = () => {
 
   const getPokemons = async (limit: number, offset: number) => {
     try {
+      setLoading(true)
+      setError(null)
+
       const response = await api.get(
         `/pokemon/?limit=${limit}&offset=${offset}`
       )
@@ -109,11 +113,15 @@ const useService = () => {
       const err = (error as AxiosError).response?.data as { error: string }
 
       setError(err.error)
+    } finally {
+      setLoading(false)
     }
   }
 
   const getPokemonPreview = async (url: string) => {
     try {
+      setLoading(true)
+      setError(null)
       const response = await api.get(url)
 
       const pokemon: PokemonPreviewProps = {
@@ -132,11 +140,15 @@ const useService = () => {
       const err = (error as AxiosError).response?.data as { error: string }
 
       setError(err.error)
+    } finally {
+      setLoading(false)
     }
   }
 
   const getPokemonFull = async (urlPokemon: string, urlSpecies: string) => {
     try {
+      setLoading(true)
+      setError(null)
       const responsePokemon = await api.get(urlPokemon)
       const responseSpecies = await api.get(urlSpecies)
 
@@ -187,11 +199,15 @@ const useService = () => {
       const err = (error as AxiosError).response?.data as { error: string }
 
       setError(err.error)
+    } finally {
+      setLoading(false)
     }
   }
 
   const getEvolution = async (url: string) => {
     try {
+      setLoading(true)
+      setError(null)
       const response = await api.get(url)
 
       const basicStage: SpeciesProps = response.data.chain.species
@@ -222,6 +238,8 @@ const useService = () => {
       }
 
       setError(err.error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -231,6 +249,7 @@ const useService = () => {
     pokemonFull,
     evolution,
     error,
+    loading,
     getPokemons,
     getPokemonPreview,
     getPokemonFull,

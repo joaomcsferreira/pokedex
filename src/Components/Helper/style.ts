@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 interface TypeIconProps {
   size?: number
@@ -8,6 +8,14 @@ interface TypeNameProps {
   color: string
   size?: number
 }
+
+const animeRotate = keyframes`
+  from {
+    transform: rotate(360deg);
+  } to {
+    transform: initial;
+  }
+`
 
 const TypesListContainer = styled.div`
   display: flex;
@@ -56,6 +64,18 @@ const GraphContainer = styled.div`
   margin: 0 auto;
 `
 
+const LoadingContainer = styled.div`
+  animation: ${animeRotate} 1.2s alternate ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const LoadingIcon = styled.img`
+  width: 200px;
+  /* filter: opacity(0.5); */
+`
+
 export {
   TypesListContainer,
   TypeContainer,
@@ -63,4 +83,6 @@ export {
   TypeName,
   FillContainer,
   GraphContainer,
+  LoadingContainer,
+  LoadingIcon,
 }

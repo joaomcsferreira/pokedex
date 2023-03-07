@@ -9,6 +9,7 @@ import Card from "./Card"
 import useForm, { useFormProps } from "../../Hooks/useForm"
 import FillMode from "../Helper/FillMode"
 import Pokemon, { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
+import Loading from "../Helper/Loading"
 
 interface ListProps {
   currentPage: number
@@ -18,7 +19,7 @@ interface ListProps {
 const List = ({ currentPage, pageInput }: ListProps) => {
   const [modal, setModal] = React.useState<string | null>(null)
   const [links, setLinks] = React.useState<PokemonLinksProps | null>(null)
-  const { pokemons, getPokemons } = useService()
+  const { loading, pokemons, getPokemons } = useService()
 
   React.useEffect(() => {
     getPokemons(21, currentPage * 21)
@@ -26,11 +27,18 @@ const List = ({ currentPage, pageInput }: ListProps) => {
     pageInput.setInitialValue(currentPage)
   }, [currentPage])
 
-  return (
-    <>
-      <ListContainer>
-        {pokemons &&
-          pokemons.map((pokemon) => (
+  if (loading)
+    return (
+      <>
+        <FillMode />
+        <Loading />
+      </>
+    )
+  else if (pokemons)
+    return (
+      <>
+        <ListContainer>
+          {pokemons.map((pokemon) => (
             <Card
               setLinks={setLinks}
               setModal={setModal}
@@ -38,18 +46,19 @@ const List = ({ currentPage, pageInput }: ListProps) => {
               key={pokemon.url}
             />
           ))}
-      </ListContainer>
+        </ListContainer>
 
-      {modal && links && (
-        <FillMode setModal={setModal}>
-          <Pokemon
-            urlPokemon={links.urlPokemon}
-            urlSpecies={links.urlSpecies}
-          />
-        </FillMode>
-      )}
-    </>
-  )
+        {modal && links && (
+          <FillMode setModal={setModal}>
+            <Pokemon
+              urlPokemon={links.urlPokemon}
+              urlSpecies={links.urlSpecies}
+            />
+          </FillMode>
+        )}
+      </>
+    )
+  else return null
 }
 
 export default List

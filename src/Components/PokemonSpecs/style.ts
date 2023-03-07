@@ -50,36 +50,40 @@ const PokemonContainer = styled.div<PokemonContainerProps>`
   &:before {
     content: "";
     position: absolute;
-    width: 90%;
-    height: 90%;
-    top: -45%;
+    width: 75%;
+    height: 75%;
+    top: -38%;
     left: -25%;
     z-index: -1;
     background: url(${({ src }) => src}) 0 0 no-repeat;
     transform: rotate(-45deg);
+    filter: opacity(0.4);
   }
 `
 
 const PokemonSection = styled.div`
   height: 100%;
   border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
   padding: 1rem;
+  display: flex;
+  justify-content: center;
 `
 
 const PokemonImg = styled.img`
-  width: 80%;
+  width: 90%;
+  max-height: 60vh;
   margin: 0 auto;
 `
 
 const PokemonNameContainer = styled.div`
   border-radius: 1rem;
+  max-height: calc(90vh - 2rem);
   margin: auto 0;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
   background: var(--g-colorTransparentWhite40);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(13.5px);
