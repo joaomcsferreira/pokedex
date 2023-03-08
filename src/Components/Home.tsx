@@ -17,24 +17,31 @@ import useForm from "../Hooks/useForm"
 import Button from "./Form/Button"
 import FillMode from "./Helper/FillMode"
 import Loading from "./Helper/Loading"
+import PokemonsList from "./PokemonList/PokemonsList"
 
 import logo from "../assets/pokemon_logo.svg"
 import previous from "../assets/previous.svg"
 import next from "../assets/next.svg"
-import PokemonsList from "./PokemonList/PokemonsList"
 
 const Home = () => {
   const [modal, setModal] = React.useState<string | null>(null)
   const [links, setLinks] = React.useState<PokemonLinksProps | null>(null)
   const [currentPage, setCurrentPage] = React.useState(0)
 
-  const { loading, pokemons, getPokemons } = useService()
+  const { loading, pokemons, getPokemons, searchPokemon } = useService()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const searchRef = React.useRef<HTMLInputElement>(null)
 
   const pageInput = useForm()
 
   const search = useForm()
+
+  function handleSearchKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter" && search.value) {
+      searchPokemon(search.value)
+    }
+  }
 
   function handleInputKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
@@ -66,6 +73,10 @@ const Home = () => {
     if (!(currentPage >= 42)) setCurrentPage((currentPage) => currentPage + 1)
   }
 
+  const handleSearchPokemon = () => {
+    if (search.value) searchPokemon(search.value)
+  }
+
   React.useEffect(() => {
     getPokemons(21, currentPage * 21)
 
@@ -79,8 +90,18 @@ const Home = () => {
       </LogoContainer>
 
       <SearchContainer>
-        <Input type="text" placeholder="Search your Pokemon..." {...search} />
-        <Button radius={3.125} color="--g-color-primary">
+        <Input
+          inputRef={searchRef}
+          onKeyDown={handleSearchKeyDown}
+          type="text"
+          placeholder="Search your Pokemon..."
+          {...search}
+        />
+        <Button
+          onClick={() => handleSearchPokemon()}
+          radius={3.125}
+          color="--g-color-primary"
+        >
           Search
         </Button>
       </SearchContainer>

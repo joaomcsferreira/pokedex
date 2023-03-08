@@ -6,6 +6,7 @@ import { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
 import { PokemonsProps } from "../../Api/api"
 
 import PokemonCard from "./PokemonCard"
+import Text from "../Form/Text"
 
 interface PokemonsListProps {
   pokemons: Array<PokemonsProps>
@@ -15,19 +16,25 @@ interface PokemonsListProps {
 
 const PokemonsList = ({ pokemons, setLinks, setModal }: PokemonsListProps) => {
   return (
-    <PokemonsListContainer>
-      {pokemons.map(
-        (pokemon) =>
-          pokemon && (
-            <PokemonCard
-              setLinks={setLinks}
-              setModal={setModal}
-              url={pokemon.url}
-              key={pokemon.url}
-            />
-          )
+    <>
+      {pokemons.length ? (
+        <PokemonsListContainer>
+          {pokemons.map(
+            (pokemon) =>
+              pokemon && (
+                <PokemonCard
+                  setLinks={setLinks}
+                  setModal={setModal}
+                  url={pokemon.url}
+                  key={pokemon.url}
+                />
+              )
+          )}
+        </PokemonsListContainer>
+      ) : (
+        <Text>{"Sorry, no Pokemon found."}</Text>
       )}
-    </PokemonsListContainer>
+    </>
   )
 }
 

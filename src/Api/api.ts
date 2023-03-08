@@ -243,6 +243,32 @@ const useService = () => {
     }
   }
 
+  const searchPokemon = async (name: string) => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await api.get(`/pokemon/?limit=883&offset=0`)
+
+      const pokemonsFind: Array<PokemonsProps> = []
+
+      for (let i = 0; i < response.data.results.length; i++) {
+        const regex = new RegExp(`${name}`, "i")
+
+        if (regex.test(response.data.results[i].name))
+          pokemonsFind.push(response.data.results[i])
+      }
+
+      setPokemons(pokemonsFind)
+    } catch (error) {
+      const err = (error as AxiosError).response?.data as { error: string }
+
+      setError(err.error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return {
     pokemons,
     pokemonPreview,
@@ -254,6 +280,7 @@ const useService = () => {
     getPokemonPreview,
     getPokemonFull,
     getEvolution,
+    searchPokemon,
   }
 }
 
