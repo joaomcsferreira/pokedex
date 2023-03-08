@@ -2,6 +2,9 @@
 
 An app that uses an external API to display comprehensive information on each Pokémon and their main abilities.
 
+![app-preview](https://user-images.githubusercontent.com/56234707/223592335-18f9ed9a-78c5-48a1-8ca8-3c805a2a0f6f.gif)
+
+
 # Contents
 
 - [Global requisites](#global-requisites)
