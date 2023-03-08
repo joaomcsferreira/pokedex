@@ -1,19 +1,76 @@
 import React from "react"
 import {
   HomeContainer,
+  Icon,
   LogoContainer,
   LogoIcon,
+  PaginationContainer,
   SearchContainer,
 } from "./style"
 
-import logo from "../assets/pokemon_logo.svg"
+import Pokemon, { PokemonLinksProps } from "./PokemonSpecs/Pokemon"
+
+import useService from "../Api/api"
+
 import Input from "./Form/Input"
 import useForm from "../Hooks/useForm"
 import Button from "./Form/Button"
-import Pokemons from "./PokemonList/Pokemons"
+import FillMode from "./Helper/FillMode"
+import Loading from "./Helper/Loading"
+
+import logo from "../assets/pokemon_logo.svg"
+import previous from "../assets/previous.svg"
+import next from "../assets/next.svg"
+import PokemonsList from "./PokemonList/PokemonsList"
 
 const Home = () => {
+  const [modal, setModal] = React.useState<string | null>(null)
+  const [links, setLinks] = React.useState<PokemonLinksProps | null>(null)
+  const [currentPage, setCurrentPage] = React.useState(0)
+
+  const { loading, pokemons, getPokemons } = useService()
+
+  const inputRef = React.useRef<HTMLInputElement>(null)
+
+  const pageInput = useForm()
+
   const search = useForm()
+
+  function handleInputKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      let newPage = 0
+
+      if (/^\d+(?:\.\d+)?$/.test(pageInput.value)) {
+        if (Number(pageInput.value) * 21 > 883) newPage = 42
+        else if (Number(pageInput.value) < 0) newPage = 0
+        else newPage = Math.trunc(Number(pageInput.value))
+      } else {
+        newPage = 0
+      }
+
+      pageInput.setInitialValue(newPage)
+
+      setCurrentPage(newPage)
+
+      if (inputRef.current) {
+        inputRef.current.blur()
+      }
+    }
+  }
+
+  const handlePreviousPage = () => {
+    if (!(currentPage <= 0)) setCurrentPage((currentPage) => currentPage - 1)
+  }
+
+  const handleNextPage = () => {
+    if (!(currentPage >= 42)) setCurrentPage((currentPage) => currentPage + 1)
+  }
+
+  React.useEffect(() => {
+    getPokemons(21, currentPage * 21)
+
+    pageInput.setInitialValue(currentPage)
+  }, [currentPage])
 
   return (
     <HomeContainer>
@@ -28,7 +85,49 @@ const Home = () => {
         </Button>
       </SearchContainer>
 
-      <Pokemons />
+      {loading ? (
+        <>
+          <FillMode />
+          <Loading />
+        </>
+      ) : (
+        <PokemonsList
+          pokemons={pokemons}
+          setLinks={setLinks}
+          setModal={setModal}
+        />
+      )}
+
+      <PaginationContainer>
+        <Icon
+          disabled={currentPage <= 0 ? true : false}
+          src={previous}
+          onClick={handlePreviousPage}
+        />
+        <Input
+          inputRef={inputRef}
+          type="text"
+          placeholder=""
+          width={pageInput.value.length || 1}
+          size={2}
+          onKeyDown={handleInputKeyDown}
+          {...pageInput}
+        />
+        <Icon
+          disabled={currentPage >= 42 ? true : false}
+          src={next}
+          onClick={handleNextPage}
+        />
+
+        {modal && links && (
+          <FillMode setModal={setModal}>
+            <Pokemon
+              urlPokemon={links.urlPokemon}
+              urlSpecies={links.urlSpecies}
+            />
+          </FillMode>
+        )}
+      </PaginationContainer>
     </HomeContainer>
   )
 }

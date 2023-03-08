@@ -1,24 +1,13 @@
 import styled from "styled-components"
 
-interface IconProps {
-  disabled?: boolean
-}
-
-const ListContainer = styled.div`
+const PokemonsListContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 `
 
-const ListActions = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-`
-
-const CardContainer = styled.div`
+const PokemonCardContainer = styled.div`
   min-width: 15.5rem;
   width: 100%;
   height: 15rem;
@@ -39,18 +28,4 @@ const CardContainer = styled.div`
 
 const CardPokemonIcon = styled.img``
 
-const Icon = styled.img<IconProps>`
-  width: 4rem;
-  background-color: ${({ disabled }) =>
-    disabled ? "var(--g-colorGray100)" : "var(--g-color-primary)"};
-  padding: 0.2rem;
-  border-radius: 50%;
-  cursor: ${({ disabled }) => (disabled ? "no-drop" : "pointer")};
-
-  &:hover {
-    background-color: ${({ disabled }) =>
-      !disabled && "var(--g-color-primary-hover)"};
-  }
-`
-
-export { ListContainer, ListActions, CardContainer, CardPokemonIcon, Icon }
+export { PokemonsListContainer, PokemonCardContainer, CardPokemonIcon }

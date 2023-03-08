@@ -1,5 +1,9 @@
 import styled from "styled-components"
 
+interface IconProps {
+  disabled?: boolean
+}
+
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,4 +36,32 @@ const SearchContainer = styled.div`
   gap: 0.5rem;
 `
 
-export { HomeContainer, LogoContainer, LogoIcon, SearchContainer }
+const PaginationContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+`
+
+const Icon = styled.img<IconProps>`
+  width: 4rem;
+  background-color: ${({ disabled }) =>
+    disabled ? "var(--g-colorGray100)" : "var(--g-color-primary)"};
+  padding: 0.2rem;
+  border-radius: 50%;
+  cursor: ${({ disabled }) => (disabled ? "no-drop" : "pointer")};
+
+  &:hover {
+    background-color: ${({ disabled }) =>
+      !disabled && "var(--g-color-primary-hover)"};
+  }
+`
+
+export {
+  HomeContainer,
+  LogoContainer,
+  LogoIcon,
+  SearchContainer,
+  PaginationContainer,
+  Icon,
+}

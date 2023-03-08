@@ -1,6 +1,6 @@
 import React from "react"
 
-import { CardContainer, CardPokemonIcon } from "./style"
+import { PokemonCardContainer, CardPokemonIcon } from "./style"
 
 import { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
 
@@ -20,13 +20,13 @@ const Card = ({ url, setModal, setLinks }: CardProps) => {
   const { pokemonPreview, getPokemonPreview } = useService()
 
   React.useEffect(() => {
-    getPokemonPreview(url)
+    if (url) getPokemonPreview(url)
   }, [])
 
   return (
     <>
       {pokemonPreview && (
-        <CardContainer
+        <PokemonCardContainer
           onClick={() => {
             setLinks({ urlPokemon: url, urlSpecies: pokemonPreview.species })
             setModal(pokemonPreview.name)
@@ -47,12 +47,10 @@ const Card = ({ url, setModal, setLinks }: CardProps) => {
             {pokemonPreview.name.replaceAll("-", " ")}
           </Title>
           <PokemonType types={pokemonPreview.types} />
-        </CardContainer>
+        </PokemonCardContainer>
       )}
     </>
   )
 }
-
-// 4.5 / 2.5
 
 export default Card
