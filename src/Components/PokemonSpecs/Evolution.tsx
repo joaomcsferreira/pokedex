@@ -2,7 +2,7 @@ import React from "react"
 
 import { EvolutionContainer, PageEvolutionContainer } from "./style"
 
-import useService, { EvolutionChainProps, SpeciesProps } from "../../Api/api"
+import { EvolutionChainProps, SpeciesProps } from "../../Api/api"
 import PokemonPreview from "./PokemonPreview"
 
 interface EvolutionProps {

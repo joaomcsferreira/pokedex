@@ -1,11 +1,14 @@
 import React from "react"
-import useService from "../../Api/api"
-import Text from "../Form/Text"
+
 import {
   PokemonPreviewContainer,
   PokemonPreviewImage,
   PokemonPreviewInfo,
 } from "./style"
+
+import useService from "../../Api/api"
+
+import Text from "../Form/Text"
 
 interface PokemonPreviewProps {
   url: string
@@ -28,14 +31,13 @@ const PokemonPreview = ({ url }: PokemonPreviewProps) => {
               src={pokemonPreview.sprite || pokemonPreview.spriteAlternative}
             />
             <Text capitalize size={1.1}>
-              {pokemonPreview.name}
+              {pokemonPreview.name.replaceAll("-", " ")}
             </Text>
           </PokemonPreviewInfo>
         </PokemonPreviewContainer>
       )}
     </>
   )
-  // return <div>PokemonPreview</div>
 }
 
 export default PokemonPreview

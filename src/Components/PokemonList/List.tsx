@@ -6,7 +6,7 @@ import useService from "../../Api/api"
 
 import Card from "./Card"
 
-import useForm, { useFormProps } from "../../Hooks/useForm"
+import { useFormProps } from "../../Hooks/useForm"
 import FillMode from "../Helper/FillMode"
 import Pokemon, { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
 import Loading from "../Helper/Loading"

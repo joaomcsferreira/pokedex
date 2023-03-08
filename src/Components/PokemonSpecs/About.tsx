@@ -1,18 +1,18 @@
 import React from "react"
-import { PokemonFullProps } from "../../Api/api"
-import Text from "../Form/Text"
-import PokemonType from "../Helper/PokemonType"
+
 import {
   IdTextContainer,
   PageAboutContainer,
   PageAboutMenuInfo,
-  PageAboutSection,
   PageAboutSectionItem,
-  PageAboutSectionItems,
   PageInfoContainer,
   PokemonXP,
-  TextContainer,
 } from "./style"
+
+import { PokemonFullProps } from "../../Api/api"
+
+import Text from "../Form/Text"
+import PokemonType from "../Helper/PokemonType"
 
 interface AboutProps {
   pokemon: PokemonFullProps

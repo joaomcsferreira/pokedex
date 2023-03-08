@@ -1,6 +1,5 @@
 import React from "react"
-import Text from "../Form/Text"
-import Graph from "../Helper/Graph"
+
 import {
   PageInfoContainer,
   PageStatsContainer,
@@ -8,6 +7,9 @@ import {
   PageStatsSection,
   StatBar,
 } from "./style"
+
+import Text from "../Form/Text"
+import Graph from "../Helper/Graph"
 
 interface StatsProps {
   stats: {

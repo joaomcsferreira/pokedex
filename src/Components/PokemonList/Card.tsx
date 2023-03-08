@@ -1,10 +1,14 @@
 import React from "react"
+
+import { CardContainer, CardPokemonIcon } from "./style"
+
+import { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
+
 import useService from "../../Api/api"
+
 import Text from "../Form/Text"
 import Title from "../Form/Title"
 import PokemonType from "../Helper/PokemonType"
-import { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
-import { CardContainer, CardPokemonIcon } from "./style"
 
 interface CardProps {
   url: string

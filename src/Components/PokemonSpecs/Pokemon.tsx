@@ -1,5 +1,5 @@
 import React from "react"
-import useService from "../../Api/api"
+
 import {
   MenuSectionContainer,
   MenuSectionItem,
@@ -8,11 +8,11 @@ import {
   PokemonNameContainer,
   PokemonSection,
   PokemonStatsContainer,
-  PokemonXP,
 } from "./style"
 
+import useService from "../../Api/api"
+
 import pokeball from "../../assets/pokeball.svg"
-import Text from "../Form/Text"
 import Title from "../Form/Title"
 import About from "./About"
 import Stats from "./Stats"
@@ -70,6 +70,7 @@ const Pokemon = ({ urlPokemon, urlSpecies }: PokemonLinksProps) => {
                   size={14 / Math.sqrt(pokemonFull.name.length)}
                   weight={900}
                   color={`${pokemonFull.color}-hover`}
+                  justify="center"
                 >
                   {pokemonFull.name.replaceAll("-", " ")}
                 </Title>

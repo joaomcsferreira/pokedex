@@ -1,5 +1,7 @@
 import React from "react"
 
+import { TypeContainer, TypeIcon, TypeName, TypesListContainer } from "./style"
+
 import bug from "../../assets/bug.svg"
 import dark from "../../assets/dark.svg"
 import dragon from "../../assets/dragon.svg"
@@ -18,7 +20,6 @@ import psychic from "../../assets/psychic.svg"
 import rock from "../../assets/rock.svg"
 import steel from "../../assets/steel.svg"
 import water from "../../assets/water.svg"
-import { TypeContainer, TypeIcon, TypeName, TypesListContainer } from "./style"
 
 interface PokemonTypeProps {
   types: Array<{

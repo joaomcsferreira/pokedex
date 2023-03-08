@@ -1,7 +1,8 @@
 import React from "react"
 
-import pokeball from "../../assets/pokeball.svg"
 import { LoadingContainer, LoadingIcon } from "./style"
+
+import pokeball from "../../assets/pokeball.svg"
 
 const Loading = () => {
   return (
