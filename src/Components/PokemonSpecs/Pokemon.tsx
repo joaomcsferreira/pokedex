@@ -23,7 +23,7 @@ import Loading from "../Helper/Loading"
 export interface PokemonLinksProps {
   urlPokemon: string
   urlSpecies: string
-  setModal: React.Dispatch<React.SetStateAction<string | null>>
+  setModal?: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
@@ -65,7 +65,7 @@ const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
         src={pokeball}
         onClick={handleChildClick}
       >
-        <ButtonCloseMobile onClick={() => setModal(null)}>
+        <ButtonCloseMobile onClick={() => setModal && setModal(null)}>
           <svg viewBox="0 0 348.333 348.334">
             <path
               fill="#fff"

@@ -97,11 +97,7 @@ const Home = () => {
           placeholder="Search your Pokemon..."
           {...search}
         />
-        <Button
-          onClick={() => handleSearchPokemon()}
-          radius={3.125}
-          color="--g-color-primary"
-        >
+        <Button onClick={() => handleSearchPokemon()} color="--g-color-primary">
           Search
         </Button>
       </SearchContainer>
