@@ -86,7 +86,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <LogoContainer>
-        <LogoIcon src={logo} />
+        <LogoIcon src={logo} onClick={() => setCurrentPage(0)} />
       </LogoContainer>
 
       <SearchContainer>
@@ -141,12 +141,15 @@ const Home = () => {
         />
 
         {modal && links && (
-          <FillMode setModal={setModal}>
+          <>
+            <FillMode setModal={setModal} />
+
             <Pokemon
               urlPokemon={links.urlPokemon}
               urlSpecies={links.urlSpecies}
+              setModal={setModal}
             />
-          </FillMode>
+          </>
         )}
       </PaginationContainer>
     </HomeContainer>

@@ -7,14 +7,6 @@ interface FillModeProps {
 }
 
 const FillMode = ({ setModal, children }: FillModeProps) => {
-  React.useEffect(() => {
-    document.body.style.overflow = "hidden"
-
-    return () => {
-      document.body.style.overflow = "auto"
-    }
-  }, [])
-
   return (
     <FillContainer onClick={() => setModal && setModal(null)}>
       {children && children}

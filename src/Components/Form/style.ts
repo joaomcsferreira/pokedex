@@ -7,7 +7,6 @@ interface InputProps {
 
 interface ButtonProps {
   color: string
-  radius?: number
   full?: boolean
 }
 
@@ -41,7 +40,7 @@ const InputContainer = styled.input<InputProps>`
   font-size: ${({ size }) => (size ? `${size}rem` : "1.2rem")};
   background-color: var(--g-colorGray250);
   color: var(--g-colorGray100);
-  border-radius: 3.125rem;
+  border-radius: 1rem;
   transition: width 0.5s linear;
 
   &:hover,
@@ -52,7 +51,7 @@ const InputContainer = styled.input<InputProps>`
 
 const ButtonContainer = styled.button<ButtonProps>`
   padding: 1.5rem;
-  border-radius: ${({ radius }) => (radius ? `${radius}rem` : "1.875rem")};
+  border-radius: 1rem;
   width: ${({ full }) => full && "100%"};
   color: var(--g-color-white);
   background-color: ${({ color }) => `var(${color})`};

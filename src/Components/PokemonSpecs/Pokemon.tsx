@@ -1,13 +1,13 @@
 import React from "react"
 
 import {
+  ButtonCloseMobile,
   MenuSectionContainer,
   MenuSectionItem,
   PokemonContainer,
   PokemonImg,
   PokemonNameContainer,
   PokemonSection,
-  PokemonStatsContainer,
 } from "./style"
 
 import useService from "../../Api/api"
@@ -23,9 +23,10 @@ import Loading from "../Helper/Loading"
 export interface PokemonLinksProps {
   urlPokemon: string
   urlSpecies: string
+  setModal: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-const Pokemon = ({ urlPokemon, urlSpecies }: PokemonLinksProps) => {
+const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
   const { loading, pokemonFull, evolution, getEvolution, getPokemonFull } =
     useService()
   const [currentPage, setCurrentPage] = React.useState<string>("about")
@@ -43,6 +44,14 @@ const Pokemon = ({ urlPokemon, urlSpecies }: PokemonLinksProps) => {
       getEvolution(pokemonFull.evolutionChainURL)
   }, [pokemonFull])
 
+  React.useEffect(() => {
+    document.body.style.overflow = "hidden"
+
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
+
   if (loading)
     return (
       <FillMode>
@@ -56,6 +65,15 @@ const Pokemon = ({ urlPokemon, urlSpecies }: PokemonLinksProps) => {
         src={pokeball}
         onClick={handleChildClick}
       >
+        <ButtonCloseMobile onClick={() => setModal(null)}>
+          <svg viewBox="0 0 348.333 348.334">
+            <path
+              fill="#fff"
+              d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z"
+            />
+          </svg>
+        </ButtonCloseMobile>
+
         <PokemonSection>
           <PokemonNameContainer>
             <PokemonImg
@@ -63,7 +81,6 @@ const Pokemon = ({ urlPokemon, urlSpecies }: PokemonLinksProps) => {
             />
             <Title
               capitalize
-              size={14 / Math.sqrt(pokemonFull.name.length)}
               weight={900}
               color={`${pokemonFull.color}-hover`}
               justify="center"
@@ -72,38 +89,35 @@ const Pokemon = ({ urlPokemon, urlSpecies }: PokemonLinksProps) => {
             </Title>
           </PokemonNameContainer>
         </PokemonSection>
-        <PokemonStatsContainer>
-          <MenuSectionContainer>
-            <MenuSectionItem
-              onClick={() => setCurrentPage("about")}
-              active={currentPage === "about" && true}
-            >
-              About
-            </MenuSectionItem>
-            <MenuSectionItem
-              onClick={() => setCurrentPage("stats")}
-              active={currentPage === "stats" && true}
-            >
-              Stats
-            </MenuSectionItem>
-            <MenuSectionItem
-              onClick={() => setCurrentPage("evolution")}
-              active={currentPage === "evolution" && true}
-            >
-              Evolution
-            </MenuSectionItem>
-          </MenuSectionContainer>
-          {currentPage === "about" && <About pokemon={pokemonFull} />}
-          {currentPage === "stats" && (
-            <Stats stats={pokemonFull.stats} color={pokemonFull.color} />
-          )}
-          {currentPage === "evolution" && (
-            <Evolution
-              evolutions={evolution}
-              currentPokemon={pokemonFull.name}
-            />
-          )}
-        </PokemonStatsContainer>
+
+        <MenuSectionContainer>
+          <MenuSectionItem
+            onClick={() => setCurrentPage("about")}
+            active={currentPage === "about" && true}
+          >
+            About
+          </MenuSectionItem>
+          <MenuSectionItem
+            onClick={() => setCurrentPage("stats")}
+            active={currentPage === "stats" && true}
+          >
+            Stats
+          </MenuSectionItem>
+          <MenuSectionItem
+            onClick={() => setCurrentPage("evolution")}
+            active={currentPage === "evolution" && true}
+          >
+            Evolution
+          </MenuSectionItem>
+        </MenuSectionContainer>
+
+        {currentPage === "about" && <About pokemon={pokemonFull} />}
+        {currentPage === "stats" && (
+          <Stats stats={pokemonFull.stats} color={pokemonFull.color} />
+        )}
+        {currentPage === "evolution" && (
+          <Evolution evolutions={evolution} currentPokemon={pokemonFull.name} />
+        )}
       </PokemonContainer>
     )
   else return null

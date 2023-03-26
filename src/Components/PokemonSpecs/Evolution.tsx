@@ -1,6 +1,10 @@
 import React from "react"
 
-import { EvolutionContainer, PageEvolutionContainer } from "./style"
+import {
+  EvolutionContainer,
+  PageEvolutionContainer,
+  PageInfoContainer,
+} from "./style"
 
 import { EvolutionChainProps, SpeciesProps } from "../../Api/api"
 import PokemonPreview from "./PokemonPreview"
@@ -137,7 +141,7 @@ const Evolution = ({ evolutions, currentPokemon }: EvolutionProps) => {
   }, [evolutions])
 
   return (
-    <>
+    <PageInfoContainer>
       {evolutionsMap && (
         <PageEvolutionContainer>
           <Text size={1.5} weight={700}>
@@ -155,7 +159,7 @@ const Evolution = ({ evolutions, currentPokemon }: EvolutionProps) => {
           ))}
         </PageEvolutionContainer>
       )}
-    </>
+    </PageInfoContainer>
   )
 }
 

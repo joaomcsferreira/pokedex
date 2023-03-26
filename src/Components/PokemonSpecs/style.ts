@@ -36,50 +36,70 @@ const animeArrow = keyframes`
 `
 
 const PokemonContainer = styled.div<PokemonContainerProps>`
-  width: 90vw;
-  height: 90vh;
   background-color: ${({ color }) => `var(${color})`};
-  border-radius: 1rem;
-  z-index: 6;
-  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  justify-content: end;
+  overflow: scroll;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-  &:before {
-    content: "";
-    position: absolute;
-    width: 75%;
-    height: 75%;
-    top: -38%;
-    left: -25%;
-    z-index: -1;
-    background: url(${({ src }) => src}) 0 0 no-repeat;
-    transform: rotate(-45deg);
-    filter: opacity(0.4);
+  @media (min-width: 950px) {
+    flex-direction: row;
+    height: 95vh;
+    width: 90vw;
+    top: 2.5%;
+    left: 5%;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+`
+
+const ButtonCloseMobile = styled.div`
+  width: 2.8rem;
+  height: 2.8rem;
+  padding: 0.5rem;
+  background-color: var(--g-colorGray300);
+  border: 3px solid var(--g-colorGray100);
+  border-radius: 50%;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+
+  @media (min-width: 950px) {
+    display: none;
   }
 `
 
 const PokemonSection = styled.div`
-  height: 100%;
   border-radius: 1rem;
   padding: 1rem;
-  display: flex;
-  justify-content: center;
+
+  @media (min-width: 950px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 const PokemonImg = styled.img`
   width: 90%;
   max-height: 60vh;
   margin: 0 auto;
+
+  @media (min-width: 950px) {
+    width: 25vw;
+    max-height: 80vh;
+  }
 `
 
 const PokemonNameContainer = styled.div`
   border-radius: 1rem;
-  max-height: calc(90vh - 2rem);
-  margin: auto 0;
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,59 +111,64 @@ const PokemonNameContainer = styled.div`
   border: 1px solid var(--g-colorTransparentWhite18);
 `
 
-const PokemonStatsContainer = styled.div`
-  background-color: var(--g-colorGray200);
-  display: flex;
-  height: 90vh;
-`
-
 const MenuSectionContainer = styled.ul`
-  width: 4rem;
-  height: 100%;
-  display: grid;
+  display: flex;
+  width: 100%;
+  height: min-content;
+  justify-content: space-between;
+
+  @media (min-width: 950px) {
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+  }
 `
 
 const MenuSectionItem = styled.li<MenuSectionItemProps>`
-  writing-mode: vertical-lr;
   font-size: 1.5rem;
   font-weight: 900;
   padding: 0.5rem;
+  flex: 1;
   display: flex;
+  text-transform: uppercase;
   justify-content: center;
   align-items: center;
-  text-transform: uppercase;
+
   background-color: ${({ active }) =>
     active ? "var(--g-colorGray300)" : "var(--g-colorGray100)"};
   color: ${({ active }) =>
     active ? "var(--g-colorGray100)" : "var(--g-colorGray300)"};
   cursor: pointer;
+
+  @media (min-width: 950px) {
+    writing-mode: vertical-lr;
+  }
 `
 
 const PageInfoContainer = styled.div`
   background-color: var(--g-colorGray300);
-  padding: 2rem;
-  width: 100%;
-  height: 100%;
+  padding: 1rem;
+  max-height: max-content;
+  min-height: fit-content;
+
+  @media (min-width: 950px) {
+    width: 100%;
+  }
 `
 
 const PageAboutContainer = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `
 
 const PageAboutSection = styled.div`
-  width: 100%;
-  height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 `
 
-const PageAboutSectionItems = styled.div`
-  height: 100%;
-`
+const PageAboutSectionItems = styled.div``
 
 const PageAboutSectionItem = styled.div`
   display: flex;
@@ -228,12 +253,16 @@ const StatBar = styled.div<StatBarProps>`
   }
 `
 
-const PageEvolutionContainer = styled(PageInfoContainer)`
+const PageEvolutionContainer = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column;
   gap: 1rem;
-  overflow-x: scroll;
+  min-height: 70vh;
+
+  @media (min-width: 950px) {
+    overflow-x: scroll;
+    height: 100%;
+  }
 `
 
 const EvolutionContainer = styled.div<EvolutionContainerProps>`
@@ -260,9 +289,9 @@ const EvolutionContainer = styled.div<EvolutionContainerProps>`
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 90px;
-    width: 90px;
-    left: -65px;
+    height: 50%;
+    width: 50%;
+    left: -40%;
     animation: ${animeArrow} 0.7s alternate infinite;
   }
 `
@@ -287,10 +316,10 @@ const PokemonPreviewImage = styled.img``
 
 export {
   PokemonContainer,
-  PokemonStatsContainer,
   PokemonSection,
   PokemonImg,
   PokemonNameContainer,
+  ButtonCloseMobile,
   MenuSectionContainer,
   MenuSectionItem,
   PageInfoContainer,

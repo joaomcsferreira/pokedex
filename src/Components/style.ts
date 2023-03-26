@@ -8,10 +8,14 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
   padding: 2rem 0;
   gap: 2rem;
+
+  @media (min-width: 950px) {
+    width: 80%;
+  }
 `
 
 const LogoContainer = styled.div`
@@ -24,6 +28,7 @@ const LogoContainer = styled.div`
 
 const LogoIcon = styled.img`
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     filter: drop-shadow(0 0 1.5rem var(--g-color-white));
