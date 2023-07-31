@@ -135,9 +135,8 @@ const MenuSectionItem = styled.li<MenuSectionItemProps>`
   align-items: center;
 
   background-color: ${({ active }) =>
-    active ? "var(--g-colorGray300)" : "var(--g-colorGray100)"};
-  color: ${({ active }) =>
-    active ? "var(--g-colorGray100)" : "var(--g-colorGray300)"};
+    active ? "var(--g-colorGray300)" : "var(--g-colorGray250)"};
+  color: var(--g-colorGray100);
   cursor: pointer;
 
   @media (min-width: 950px) {

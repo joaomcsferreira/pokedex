@@ -10,16 +10,10 @@ import {
 
 import Text from "../Form/Text"
 import Graph from "../Helper/Graph"
+import { PokemonStatsProps } from "../../Api/apiTypes"
 
 interface StatsProps {
-  stats: {
-    HP: string
-    ATK: string
-    DEF: string
-    SpA: string
-    SpD: string
-    SPD: string
-  }
+  stats: PokemonStatsProps
   color: string
 }
 
@@ -40,7 +34,7 @@ const Stats = ({ stats, color }: StatsProps) => {
       </Text>
       <PageStatsContainer>
         <Graph
-          color={color}
+          color={`--g-type-${color}`}
           stats={Object.values(stats).map((stat) => Number(stat))}
         />
         <PageStatsSection>
@@ -50,7 +44,7 @@ const Stats = ({ stats, color }: StatsProps) => {
                 {stat[0]}
               </Text>
               <StatBar
-                color={color}
+                color={`--g-type-${color}`}
                 width={(Number(stat[1]) * 100) / Number(MaxStats[index][1])}
               />
               <Text weight={500} size={1.1}>

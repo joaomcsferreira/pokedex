@@ -21,14 +21,13 @@ import FillMode from "../Helper/FillMode"
 import Loading from "../Helper/Loading"
 
 export interface PokemonLinksProps {
-  urlPokemon: string
-  urlSpecies: string
+  modal: string
   setModal?: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
-  const { loading, pokemonFull, evolution, getEvolution, getPokemonFull } =
-    useService()
+const Pokemon = ({ modal, setModal }: PokemonLinksProps) => {
+  const { loading, pokemon, getPokemon } = useService()
+
   const [currentPage, setCurrentPage] = React.useState<string>("about")
 
   const handleChildClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -36,13 +35,8 @@ const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
   }
 
   React.useEffect(() => {
-    getPokemonFull(urlPokemon, urlSpecies)
+    getPokemon(modal)
   }, [])
-
-  React.useEffect(() => {
-    if (pokemonFull?.evolutionChainURL)
-      getEvolution(pokemonFull.evolutionChainURL)
-  }, [pokemonFull])
 
   React.useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -58,10 +52,10 @@ const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
         <Loading />
       </FillMode>
     )
-  else if (pokemonFull)
+  else if (pokemon)
     return (
       <PokemonContainer
-        color={pokemonFull?.color}
+        color={`--g-type-${pokemon?.color}`}
         src={pokeball}
         onClick={handleChildClick}
       >
@@ -77,15 +71,17 @@ const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
         <PokemonSection>
           <PokemonNameContainer>
             <PokemonImg
-              src={pokemonFull.imgFull || pokemonFull.imgFullAlternative}
+              src={
+                pokemon.spriteLarge.normal || pokemon.spriteLarge.alternative
+              }
             />
             <Title
               capitalize
               weight={900}
-              color={`${pokemonFull.color}-hover`}
+              color={`${pokemon.color}-hover`}
               justify="center"
             >
-              {pokemonFull.name.replaceAll("-", " ")}
+              {pokemon.name.replaceAll("-", " ")}
             </Title>
           </PokemonNameContainer>
         </PokemonSection>
@@ -111,12 +107,12 @@ const Pokemon = ({ urlPokemon, urlSpecies, setModal }: PokemonLinksProps) => {
           </MenuSectionItem>
         </MenuSectionContainer>
 
-        {currentPage === "about" && <About pokemon={pokemonFull} />}
+        {currentPage === "about" && <About pokemon={pokemon} />}
         {currentPage === "stats" && (
-          <Stats stats={pokemonFull.stats} color={pokemonFull.color} />
+          <Stats stats={pokemon.stats} color={pokemon.color} />
         )}
         {currentPage === "evolution" && (
-          <Evolution evolutions={evolution} currentPokemon={pokemonFull.name} />
+          <Evolution evolutions={pokemon.evolutions} />
         )}
       </PokemonContainer>
     )

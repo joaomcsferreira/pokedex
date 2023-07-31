@@ -2,30 +2,29 @@ import React, { SetStateAction } from "react"
 
 import { PokemonsListContainer } from "./style"
 
-import { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
-import { PokemonsProps } from "../../Api/api"
-
 import PokemonCard from "./PokemonCard"
 import Text from "../Form/Text"
+import { ListPokemonProps } from "../../Api/apiTypes"
 
-interface PokemonsListProps {
-  pokemons: Array<PokemonsProps>
-  setLinks: React.Dispatch<SetStateAction<PokemonLinksProps | null>>
+interface PokemonsListPageProps {
+  listPokemons: ListPokemonProps
   setModal: React.Dispatch<SetStateAction<string | null>>
 }
 
-const PokemonsList = ({ pokemons, setLinks, setModal }: PokemonsListProps) => {
+const PokemonsListPage = ({
+  listPokemons,
+  setModal,
+}: PokemonsListPageProps) => {
   return (
     <>
-      {pokemons.length ? (
+      {listPokemons.list ? (
         <PokemonsListContainer>
-          {pokemons.map(
+          {listPokemons.list.map(
             (pokemon) =>
               pokemon && (
                 <PokemonCard
-                  setLinks={setLinks}
+                  pokemon={pokemon}
                   setModal={setModal}
-                  url={pokemon.url}
                   key={pokemon.url}
                 />
               )
@@ -38,4 +37,4 @@ const PokemonsList = ({ pokemons, setLinks, setModal }: PokemonsListProps) => {
   )
 }
 
-export default PokemonsList
+export default PokemonsListPage

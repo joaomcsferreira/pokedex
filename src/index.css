@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,500;0,900;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,500;0,900;1,700&display=swap");
 
 :root {
   --g-color-black: #111;
@@ -7,61 +7,59 @@
   --g-color-primary: #3183ff;
   --g-color-primary-hover: #2a6ccf;
 
-  --g-color-electric: #FBD100;
-  --g-color-fire: #FF9741;
-  --g-color-ground: #E87236;
-  --g-color-grass: #38BF4B;
-  --g-color-bug: #83C300;
-  --g-color-ice: #4CD1C0;
-  --g-color-dragon: #006FC9;
-  --g-color-water: #3692DC;
-  --g-color-flying: #89AAE3;
-  --g-color-ghost: #4C6AB2;
-  --g-color-poison: #B567CE;
-  --g-color-fairy: #FB89EB;
-  --g-color-normal: #919AA2;
-  --g-color-dark: #5B5466;
-  --g-color-rock: #C8B686;
-  --g-color-steel: #5A8EA2;
-  --g-color-fighting: #E0306A;
-  --g-color-psychic: #FF6675;
+  --g-color-electric: #fbd100;
+  --g-color-fire: #ff9741;
+  --g-color-ground: #e87236;
+  --g-color-grass: #38bf4b;
+  --g-color-bug: #83c300;
+  --g-color-ice: #4cd1c0;
+  --g-color-dragon: #006fc9;
+  --g-color-water: #3692dc;
+  --g-color-flying: #89aae3;
+  --g-color-ghost: #4c6ab2;
+  --g-color-poison: #b567ce;
+  --g-color-fairy: #fb89eb;
+  --g-color-normal: #919aa2;
+  --g-color-dark: #5b5466;
+  --g-color-rock: #c8b686;
+  --g-color-steel: #5a8ea2;
+  --g-color-fighting: #e0306a;
+  --g-color-psychic: #ff6675;
 
-  --g-type-white: #F0F0F0;
+  --g-type-white: #f0f0f0;
   --g-type-white-hover: #8f8f8f;
-  --g-type-gray: #A0A0A0;
+  --g-type-gray: #a0a0a0;
   --g-type-gray-hover: #535353;
-  --g-type-yellow: #F0D048;
+  --g-type-yellow: #f0d048;
   --g-type-yellow-hover: #b67600;
-  --g-type-brown: #B07030;
+  --g-type-brown: #b07030;
   --g-type-brown-hover: #643608;
-  --g-type-green: #40B868;
+  --g-type-green: #40b868;
   --g-type-green-hover: #0f702f;
-  --g-type-blue: #3088F0;
+  --g-type-blue: #3088f0;
   --g-type-blue-hover: #074186;
-  --g-type-purple: #A868C0;
+  --g-type-purple: #a868c0;
   --g-type-purple-hover: #5c1b74;
-  --g-type-pink: #F890C8;
+  --g-type-pink: #f890c8;
   --g-type-pink-hover: #a7306f;
-  --g-type-red: #F05868;
+  --g-type-red: #f05868;
   --g-type-red-hover: #a71c2a;
   --g-type-black: #2c2c2c;
   --g-type-black-hover: #111;
-  
 
   --g-colorGray100: #cecece;
-  --g-colorGray150: #787878;
-  --g-colorGray175: rgb(100, 100, 100);
-  --g-colorGray200: #5c5c5c;
-  --g-colorGray250: #474747;
-  --g-colorGray300: #303030;
+  --g-colorGray150: #5a6266;
+  --g-colorGray200: #454b4e;
+  --g-colorGray250: #353a3c;
+  --g-colorGray300: #242729;
 
   --g-colorTransparentBlack50: rgba(0, 0, 0, 0.5);
   --g-colorTransparentWhite18: rgba(255, 255, 255, 0.18);
   --g-colorTransparentWhite40: rgba(255, 255, 255, 0.4);
   --g-colorTransparentBlue30: rgba(31, 38, 135, 0.3);
-  --g-colorTransparentGray50: rgba(180, 180, 180,0.5);
+  --g-colorTransparentGray50: rgba(180, 180, 180, 0.5);
 
-  --font-family: 'Poppins', sans-serif;
+  --font-family: "Poppins", sans-serif;
 }
 
 * {

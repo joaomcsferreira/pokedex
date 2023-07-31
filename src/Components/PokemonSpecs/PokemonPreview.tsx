@@ -9,29 +9,37 @@ import {
 import useService from "../../Api/api"
 
 import Text from "../Form/Text"
+import { BasicPokemonPros } from "../../Api/apiTypes"
 
 interface PokemonPreviewProps {
   url: string
 }
 
 const PokemonPreview = ({ url }: PokemonPreviewProps) => {
-  const { pokemonPreview, getPokemonPreview } = useService()
+  const [pokemon, setPokemon] = React.useState<BasicPokemonPros>()
+
+  const { getBasicPokemon } = useService()
 
   React.useEffect(() => {
-    const urlPokemon = url.replace("-species", "")
-    getPokemonPreview(urlPokemon)
+    const getPokemon = async () => {
+      const pokemonResponse = await getBasicPokemon(url)
+
+      setPokemon(pokemonResponse)
+    }
+
+    getPokemon()
   }, [])
 
   return (
     <>
-      {pokemonPreview && (
+      {pokemon && (
         <PokemonPreviewContainer>
           <PokemonPreviewInfo>
             <PokemonPreviewImage
-              src={pokemonPreview.sprite || pokemonPreview.spriteAlternative}
+              src={pokemon.sprite.animated || pokemon.sprite.normal}
             />
             <Text capitalize size={1.1}>
-              {pokemonPreview.name.replaceAll("-", " ")}
+              {pokemon.name.replaceAll("-", " ")}
             </Text>
           </PokemonPreviewInfo>
         </PokemonPreviewContainer>

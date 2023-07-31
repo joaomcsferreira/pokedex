@@ -2,51 +2,41 @@ import React from "react"
 
 import { PokemonCardContainer, CardPokemonIcon } from "./style"
 
-import { PokemonLinksProps } from "../PokemonSpecs/Pokemon"
-
-import useService from "../../Api/api"
-
 import Text from "../Form/Text"
 import Title from "../Form/Title"
 import PokemonType from "../Helper/PokemonType"
+import { BasicPokemonPros } from "../../Api/apiTypes"
 
 interface CardProps {
-  url: string
+  pokemon: BasicPokemonPros
   setModal: React.Dispatch<React.SetStateAction<string | null>>
-  setLinks: React.Dispatch<React.SetStateAction<PokemonLinksProps | null>>
 }
 
-const Card = ({ url, setModal, setLinks }: CardProps) => {
-  const { pokemonPreview, getPokemonPreview } = useService()
-
-  React.useEffect(() => {
-    if (url) getPokemonPreview(url)
-  }, [])
-
+const Card = ({ pokemon, setModal }: CardProps) => {
   return (
     <>
-      {pokemonPreview && (
+      {pokemon && (
         <PokemonCardContainer
           onClick={() => {
-            setLinks({ urlPokemon: url, urlSpecies: pokemonPreview.species })
-            setModal(pokemonPreview.name)
+            setModal(pokemon.url)
           }}
         >
           <CardPokemonIcon
-            src={pokemonPreview.sprite || pokemonPreview.spriteAlternative}
+            src={pokemon.sprite.animated || pokemon.sprite.normal}
           />
+
           <Text weight={900} color="--g-color-white">
-            Nº{("00000" + pokemonPreview.id).slice(-5)}
+            Nº{("00000" + pokemon.id).slice(-5)}
           </Text>
           <Title
-            size={7 / Math.sqrt(pokemonPreview.name.length)}
+            size={7 / Math.sqrt(pokemon.name.length)}
             weight={900}
             capitalize
             color="--g-color-white"
           >
-            {pokemonPreview.name.replaceAll("-", " ")}
+            {pokemon.name.replaceAll("-", " ")}
           </Title>
-          <PokemonType types={pokemonPreview.types} />
+          <PokemonType types={pokemon.types} />
         </PokemonCardContainer>
       )}
     </>

@@ -22,13 +22,7 @@ import steel from "../../assets/steel.svg"
 import water from "../../assets/water.svg"
 
 interface PokemonTypeProps {
-  types: Array<{
-    slot: number
-    type: {
-      name: string
-      url: string
-    }
-  }>
+  types: Array<string>
   size?: number
 }
 
@@ -56,18 +50,16 @@ const PokemonType = ({ types, size }: PokemonTypeProps) => {
   return (
     <TypesListContainer>
       {types.map((type) => (
-        <TypeContainer key={type.type.name}>
+        <TypeContainer key={type}>
           <TypeIcon
             size={size}
-            src={typesList[`${type.type.name as keyof typeof typesList}`].src}
+            src={typesList[`${type as keyof typeof typesList}`].src}
           />
           <TypeName
             size={size}
-            color={
-              typesList[`${type.type.name as keyof typeof typesList}`].color
-            }
+            color={typesList[`${type as keyof typeof typesList}`].color}
           >
-            {type.type.name}
+            {type}
           </TypeName>
         </TypeContainer>
       ))}

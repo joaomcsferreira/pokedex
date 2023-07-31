@@ -9,13 +9,12 @@ import {
   PokemonXP,
 } from "./style"
 
-import { PokemonFullProps } from "../../Api/api"
-
 import Text from "../Form/Text"
 import PokemonType from "../Helper/PokemonType"
+import { PokemonProps } from "../../Api/apiTypes"
 
 interface AboutProps {
-  pokemon: PokemonFullProps
+  pokemon: PokemonProps
 }
 
 const About = ({ pokemon }: AboutProps) => {
@@ -33,7 +32,7 @@ const About = ({ pokemon }: AboutProps) => {
             About it
           </Text>
           <Text size={1.25} weight={500}>
-            {`"${pokemon.description}"`}
+            {`"${pokemon.description}"` || "-"}
           </Text>
         </PageAboutSectionItem>
 
@@ -44,10 +43,10 @@ const About = ({ pokemon }: AboutProps) => {
           <PageAboutMenuInfo columns={"3"} rows={"2"}>
             <Text size={1.1}>Weigth</Text>
             <Text size={1.1}>Height</Text>
-            <Text size={1.1}>Shape</Text>
-            <Text>{`${pokemon.weight}Kg`}</Text>
-            <Text>{`${pokemon.height}m`}</Text>
-            <Text capitalize>{pokemon.habitat}</Text>
+            <Text size={1.1}>Habitat</Text>
+            <Text>{`${pokemon.weight}Kg` || "-"}</Text>
+            <Text>{`${pokemon.height}m` || "-"}</Text>
+            <Text capitalize>{pokemon.habitat || "-"}</Text>
           </PageAboutMenuInfo>
         </PageAboutSectionItem>
 
@@ -57,8 +56,8 @@ const About = ({ pokemon }: AboutProps) => {
           </Text>
           <PageAboutMenuInfo columns={`${pokemon.abilities.length}`} rows={"1"}>
             {pokemon.abilities.map((ability) => (
-              <Text key={ability.ability.name} size={1.1} capitalize>
-                {ability.ability.name}
+              <Text key={ability} size={1.1} capitalize>
+                {ability}
               </Text>
             ))}
           </PageAboutMenuInfo>
@@ -73,7 +72,7 @@ const About = ({ pokemon }: AboutProps) => {
             <Text size={1.1}>Type</Text>
 
             <PokemonXP>
-              <Text weight={900}>{pokemon.base_experience}</Text>
+              <Text weight={900}>{pokemon.baseExperience}</Text>
               <Text>XP</Text>
             </PokemonXP>
             <PokemonType size={40} types={pokemon.types} />
